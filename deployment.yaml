@@ -3,21 +3,24 @@ kind: Deployment
 metadata:
   name: register-app-deployment
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
-      app: register-app
+      app: registerapp
   template:
     metadata:
       labels:
-        app: register-app
+        app: registerapp
     spec:
       containers:
-        - name: register-app
-          image: ashfaque9x/register-app-pipeline:1.0.0-9
-          resources:
-            limits:
-              memory: "256Mi"
-              cpu: "500m"
-          ports:
-            - containerPort: 8080
+      - name: register-app
+        image: anshu2390/register-app:1.0.0-21
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080
